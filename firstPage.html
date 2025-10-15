@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Follower</title>
+</head>
+
+<body>
+    <script>
+        class Actor {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+            }
+
+            move(xAmt, yAmt) {
+                this.x += xAmt;
+                this.y += yAmt;
+            }
+
+            getPosition(){
+                return 'currently at ' + this.x + ', ' + this.y;
+            } 
+
+            distanceTo(otherCharacter) {
+                let xDelta = this.x - otherCharacter.x;
+                let yDelta = this.y - otherCharacter.y;
+                let distance = Math.sqrt(xDelta ** 2 + yDelta ** 2);
+
+                return distance;
+            }
+        }
+
+        class Player extends Actor {
+            constructor(x, y) {
+                super(x, y);
+                this.HP = 100;
+            }
+        }
+
+        class Follower extends Actor {
+            constructor(startX, startY, player) {
+                super(startX, startY);
+                this.player = player; // we point to the player, we DON't copy info
+            }
+
+            follow() {
+                this.x = player.x;
+                this.y = player.y;
+            }
+
+        }
+
+        let player = new Player(10, -5);
+        let follower = new Follower(8, 32, player);
+
+        console.log("Start: ")
+        console.log("Player is " + player.getPosition());
+        console.log("Follower is " + follower.getPosition() + "\n\n");
+
+        console.log("Follower follows:");
+        follower.follow();
+        console.log("Player is " + player.getPosition());
+        console.log("Follower is " + follower.getPosition() + "\n\n");
+
+        console.log("Moving the player:");
+        player.move(-300000, 999999);
+        console.log("Player is " + player.getPosition());
+        console.log("Follower is " + follower.getPosition() + "\n\n");
+
+        console.log("Follower follows:");
+        follower.follow();
+        console.log("Player is " + player.getPosition());
+        console.log("Follower is " + follower.getPosition() + "\n\n");
+
+    </script>
+
+</body>
+
+</html>
