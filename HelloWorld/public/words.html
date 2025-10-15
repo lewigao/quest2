@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word</title>
+</head>
+
+<body>
+    <h1>Word of the Day</h1>
+    <div>
+        <div id='word'></div>
+        <div id='part'></div>
+        <div id='def'></div>
+    </div>
+</body>
+<script>
+    fetch('/wordRequest')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('word').textContent = data.word;
+            document.getElementById('part').textContent = data.part;
+            document.getElementById('def').textContent = data.definition;
+        });
+
+    // async function getNewWord(){
+    //     try{
+    //         //wait for the fetch to finish
+    //         const response = await fetch('/wordRequest');
+            
+    //         //takes the response as a json
+    //         const data = await response.json()
+            
+    //         //gets our corresponding page-elements and sets them equal to data in our json
+    //         document.getElementById('word').textContent = data.word;
+    //         document.getElementById('part').textContent = data.part;
+    //         document.getElementById('def').textContent = data.definition;
+    //     }
+    //     catch{
+    //         document.getElementById('word').textContent = 'Error in loading!';
+    //         console.log('error!');
+    //     }
+    // }
+    // //calls the function
+    // getNewWord();
+</script>
+
+</html>
