@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lewi's WOTD</title>
+    <link rel='stylesheet' href='index.css'/>
+</head>
+<body>
+
+    <h1>Welcome to Lewi's WOTD Page</h1>
+    <p>Everytime you come here, a child dies.</p>
+    <p>This page has been visited <span id='hits'></span> times.</p>
+    <a href='/words.html'>View the word of the day</a>
+</body>
+<script>
+    fetch('/hits')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('hits').textContent = data.hitCount;
+        }
+    );
+</script>
+</html>
